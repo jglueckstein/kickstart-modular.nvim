@@ -29,6 +29,10 @@ vim.keymap.set("c", "<C-s>", "<C-u>write<CR>", { silent = true, desc = 'Save buf
 -- fast save and quit all windows with CTRL-q
 vim.keymap.set("n", "<C-q>", "<CMD>wqa<CR>", { silent = true, desc = 'save and quit all windows'})
 
+-- fast exit from insert mode
+vim.keymap.set("i", "jk", "<ESC>", { silent = true, desc = 'fast exit from insert mode'})
+vim.keymap.set("i", "kj", "<ESC>", { silent = true, desc = 'fast exit from insert mode'})
+
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
