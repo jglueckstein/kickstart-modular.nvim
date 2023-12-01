@@ -3,7 +3,7 @@
 local cmp = require 'cmp'
 local luasnip = require 'luasnip'
 require('luasnip.loaders.from_vscode').lazy_load()
-require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/lua/custom/snippets/" })
+require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/lua/custom/snippets/" })
 luasnip.config.setup({
   -- Enable autotriggered snippets
   enable_autosnippets = true,
