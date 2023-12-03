@@ -10,6 +10,9 @@ luasnip.config.setup({
 
   -- Use Tab to trigger visual selection
   store_selection_keys = "<Tab>",
+
+  -- Make luasnip update nodes as you type
+  update_events = 'TextChanged,TextChangedI',
 })
 
 cmp.setup {
