@@ -16,5 +16,23 @@ return {
 				filetypes = { "markdown" },
 			},
 		})
-	end
+	end,
+
+	-- Create a new note after asking for its title
+	vim.keymap.set("n", "<Leader>zn", "<Cmd>ZkNew { title = vim.fn.input('Title: ') }<CR>",
+		{ desc = 'Zettelkasten New Note (prompts for title)' }),
+
+	-- Open notes
+	vim.keymap.set("n", "<Leader>zo", "<Cmd>ZkNotes { sort = { 'modified' } }<CR>",
+		{ noremap = true, silent = false, desc = 'Zettelkasten Open Notes' }),
+	-- Open notes associated with the selected tags
+	vim.keymap.set("n", "<Leader>zt", "<Cmd>ZkTags<CR>",
+		{ noremap = true, silent = false, desc = 'Zettelkasten Open Notes By Tags' }),
+
+	-- Search for the notes matching a given query
+	vim.keymap.set("n", "<Leader>zf", "<Cmd>ZkNotes { sort = { 'modified' }, match = {vim.fn.input('Search: ') } }<CR>",
+		{ noremap = true, silent = false, desc = 'Zettelkasten Search Notes (prompts for search term)' }),
+	-- Search for the notes matching the current visual selection
+	vim.keymap.set("v", "<Leader>zf", ":'<,'>ZkMatch<CR>",
+		{ noremap = true, silent = false, desc = 'Zettelkasten Search Notes by Visual Selection' }),
 }
