@@ -7,7 +7,7 @@
 vim.opt.number = true
 -- You can also add relative line numbers, for help with jumping.
 --  Experiment for yourself to see if you like it!
--- vim.opt.relativenumber = true
+vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
@@ -61,65 +61,53 @@ vim.opt.scrolloff = 10
 -- ----------------------------------------------------
 
 -- Show match for partly-typed search term
-vim.o.incsearch = true
+vim.opt.incsearch = true
 
 -- Try to keep space between cursor and edge of window
-vim.o.scrolloff = 10
-vim.o.sidescrolloff = 10
-
--- Line numbers
-vim.o.number = true
-vim.o.relativenumber = true
+vim.opt.sidescrolloff = 10
 
 -- Number of screen lines to use for the command-line
-vim.o.cmdheight = 2
-
--- Highlight the text line of the cursor
-vim.o.cursorline = true
+vim.opt.cmdheight = 2
 
 -- How cursorline is displayed
-vim.o.cursorlineopt = 'both'
+vim.opt.cursorlineopt = 'both'
 
 -- Highlight the screen columns specified
-vim.o.colorcolumn = '80'
+vim.opt.colorcolumn = '80'
 
 -- When on spell checking will be done
-vim.o.spell = true
+vim.opt.spell = true
 
 -- When on, an abandoned buffer is hidden vs. being unloaded
-vim.o.hidden = true
-
--- Sane directions to open splits
-vim.o.splitbelow = true
-vim.o.splitright = true
+vim.opt.hidden = true
 
 -- To indicate an error, should we beep and/or flash the screen?
-vim.o.errorbells = false
-vim.o.visualbell = true
+vim.opt.errorbells = false
+vim.opt.visualbell = true
 
 -- Directory names for undo files
-vim.o.undodir = '/home/jon/.vimundo'
+vim.opt.undodir = '/home/jon/.vimundo'
 
 -- Maximum width of text that is being inserted.
-vim.o.textwidth = 80
+vim.opt.textwidth = 80
 
 -- Tabs
-vim.o.tabstop = 4
-vim.o.shiftwidth = 4
-vim.o.expandtab = true
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
 
 -- Indents
-vim.o.autoindent = true
-vim.o.smartindent = true
+vim.opt.autoindent = true
+vim.opt.smartindent = true
 
 -- Folding
-vim.o.foldmethod = 'expr'
-vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 
 -- Make a backup before overwriting a file
-vim.o.backup = false
+vim.opt.backup = false
 
 -- Use a swapfile for the buffer
-vim.o.swapfile = false
+vim.opt.swapfile = false
 
 -- vim: ts=2 sts=2 sw=2 et
