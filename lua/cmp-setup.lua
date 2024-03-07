@@ -2,18 +2,22 @@
 -- See `:help cmp`
 local cmp = require 'cmp'
 local luasnip = require 'luasnip'
+-- jcg, suggested by moonfly docs
+local winhighlight = {
+  winhighlight = 'Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel',
+}
 require('luasnip.loaders.from_vscode').lazy_load()
-require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/lua/custom/snippets/" })
-luasnip.config.setup({
+require('luasnip.loaders.from_lua').lazy_load { paths = '~/.config/nvim/lua/custom/snippets/' }
+luasnip.config.setup {
   -- Enable autotriggered snippets
   enable_autosnippets = true,
 
   -- Use Tab to trigger visual selection
-  store_selection_keys = "<Tab>",
+  store_selection_keys = '<Tab>',
 
   -- Make luasnip update nodes as you type
   update_events = 'TextChanged,TextChangedI',
-})
+}
 
 cmp.setup {
   snippet = {
@@ -57,6 +61,11 @@ cmp.setup {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
     { name = 'path' },
+  },
+  -- jcg, suggested by moonfly docs
+  window = {
+    completion = cmp.config.window.bordered(winhighlight),
+    documentation = cmp.config.window.bordered(winhighlight),
   },
 }
 
