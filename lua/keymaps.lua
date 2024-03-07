@@ -68,6 +68,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- telescope picker for todo-comments
-vim.keymap.set('n', '<leader>st', '<cmd>TodoTelescope<CR>')
+vim.keymap.set('n', '<leader>st', '<cmd>TodoTelescope<CR>', { desc = '[S]earch [T]odo comments in Telescope' })
 
 -- vim: ts=2 sts=2 sw=2 et
