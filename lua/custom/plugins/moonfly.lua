@@ -1,3 +1,4 @@
+-- TODO: make statusbar use the color scheme (or change statusbars)
 return {
   { -- You can easily change to a different colorscheme.
     -- Change the name of the colorscheme plugin below, and then
