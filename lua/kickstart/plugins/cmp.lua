@@ -34,7 +34,19 @@ return {
       -- See `:help cmp`
       local cmp = require 'cmp'
       local luasnip = require 'luasnip'
-      luasnip.config.setup {}
+      luasnip.config.setup {
+        -- jcg These settings are recommended in the ejmastnak luasnip tutorial
+        -- jcg Enable autotriggered snippets
+        enable_autosnippets = true,
+        -- jcg Use Tab to trigger visual selection
+        store_selection_keys = '<Tab>',
+        -- jcg Make luasnip update nodes as you type
+        update_events = 'TextChanged,TextChangedI',
+      }
+      -- jcg this is required to make friendly-snippets work
+      require('luasnip.loaders.from_vscode').lazy_load()
+      -- jcg this is required to make my custom snippets work
+      require('luasnip.loaders.from_lua').lazy_load { paths = '~/.config/nvim/lua/custom/snippets/' }
 
       cmp.setup {
         snippet = {
@@ -87,6 +99,11 @@ return {
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
           { name = 'path' },
+        },
+        -- jcg, suggested by moonfly docs
+        window = {
+          completion = cmp.config.window.bordered(winhighlight),
+          documentation = cmp.config.window.bordered(winhighlight),
         },
       }
     end,
