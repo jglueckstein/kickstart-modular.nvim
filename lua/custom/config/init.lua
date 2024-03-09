@@ -3,3 +3,5 @@
 require 'custom.config.vimtex-setup'
 
 require 'custom.config.ui'
+
+require 'custom.config.keymaps'
