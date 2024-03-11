@@ -76,7 +76,6 @@ normal! zt
 keepjumps 48
 normal! 047|
 wincmd w
-2wincmd w
 exe 'vert 1resize ' . ((&columns * 103 + 103) / 206)
 exe 'vert 2resize ' . ((&columns * 102 + 103) / 206)
 tabnext 1
