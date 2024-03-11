@@ -10,19 +10,6 @@ return {
     'MunifTanjim/nui.nvim',
   },
   config = function()
-    require('neo-tree').setup {
-      keys = {
-        {
-          '<leader>tf',
-          function()
-            require('neo-tree.command').execute {
-              toggle = true,
-              position = 'right',
-            }
-          end,
-          desc = 'neo-[T]ree toggle [F]ile tree',
-        },
-      },
-    }
+    require('neo-tree').setup {}
   end,
 }
