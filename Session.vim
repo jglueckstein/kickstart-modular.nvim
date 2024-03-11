@@ -13,9 +13,10 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +14 lua/custom/plugins/filetree.lua
+badd +23 lua/custom/plugins/filetree.lua
 badd +756 ~/.dotfiles/local/share/nvim/lazy/lazy.nvim/doc/lazy.nvim.txt
-badd +14 lua/custom/config/keymaps.lua
+badd +13 lua/custom/config/keymaps.lua
+badd +682 temp.lua
 argglobal
 %argdel
 edit lua/custom/plugins/filetree.lua
@@ -35,30 +36,49 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 103 + 103) / 206)
-exe 'vert 2resize ' . ((&columns * 102 + 103) / 206)
+exe 'vert 1resize ' . ((&columns * 102 + 103) / 206)
+exe 'vert 2resize ' . ((&columns * 103 + 103) / 206)
+tcd ~/.dotfiles/config/nvim
 argglobal
 setlocal fdm=expr
 setlocal fde=nvim_treesitter#foldexpr()
 setlocal fmr={{{,}}}
 setlocal fdi=#
-setlocal fdl=2
+setlocal fdl=5
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
 4
 normal! zo
-let s:l = 14 - ((13 * winheight(0) + 22) / 44)
+12
+normal! zo
+13
+normal! zo
+20
+normal! zo
+26
+normal! zo
+27
+normal! zo
+28
+normal! zo
+42
+normal! zo
+43
+normal! zo
+49
+normal! zo
+let s:l = 18 - ((17 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 14
-normal! 0
+keepjumps 18
+normal! 027|
 wincmd w
 argglobal
 enew | setl bt=help
-help :Neotree@en
-balt lua/custom/config/keymaps.lua
+help neo-tree-netrw-hijack@en
+balt ~/.dotfiles/config/nvim/lua/custom/plugins/filetree.lua
 setlocal fdm=manual
 setlocal fde=nvim_treesitter#foldexpr()
 setlocal fmr={{{,}}}
@@ -69,15 +89,16 @@ setlocal fdn=20
 setlocal nofen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 48 - ((21 * winheight(0) + 22) / 44)
+let s:l = 1548 - ((20 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 48
-normal! 047|
+keepjumps 1548
+normal! 018|
 wincmd w
-exe 'vert 1resize ' . ((&columns * 103 + 103) / 206)
-exe 'vert 2resize ' . ((&columns * 102 + 103) / 206)
+2wincmd w
+exe 'vert 1resize ' . ((&columns * 102 + 103) / 206)
+exe 'vert 2resize ' . ((&columns * 103 + 103) / 206)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
