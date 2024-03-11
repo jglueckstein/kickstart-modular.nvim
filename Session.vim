@@ -13,31 +13,13 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +23 lua/custom/plugins/filetree.lua
+badd +26 lua/custom/plugins/filetree.lua
 badd +756 ~/.dotfiles/local/share/nvim/lazy/lazy.nvim/doc/lazy.nvim.txt
 badd +13 lua/custom/config/keymaps.lua
-badd +682 temp.lua
+badd +1878 ~/.dotfiles/local/share/nvim/lazy/neo-tree.nvim/doc/neo-tree.txt
 argglobal
 %argdel
 edit lua/custom/plugins/filetree.lua
-let s:save_splitbelow = &splitbelow
-let s:save_splitright = &splitright
-set splitbelow splitright
-wincmd _ | wincmd |
-vsplit
-1wincmd h
-wincmd w
-let &splitbelow = s:save_splitbelow
-let &splitright = s:save_splitright
-wincmd t
-let s:save_winminheight = &winminheight
-let s:save_winminwidth = &winminwidth
-set winminheight=0
-set winheight=1
-set winminwidth=0
-set winwidth=1
-exe 'vert 1resize ' . ((&columns * 102 + 103) / 206)
-exe 'vert 2resize ' . ((&columns * 103 + 103) / 206)
 tcd ~/.dotfiles/config/nvim
 argglobal
 setlocal fdm=expr
@@ -68,37 +50,12 @@ normal! zo
 normal! zo
 49
 normal! zo
-let s:l = 18 - ((17 * winheight(0) + 22) / 44)
+let s:l = 26 - ((18 * winheight(0) + 22) / 44)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 18
+keepjumps 26
 normal! 027|
-wincmd w
-argglobal
-enew | setl bt=help
-help neo-tree-netrw-hijack@en
-balt ~/.dotfiles/config/nvim/lua/custom/plugins/filetree.lua
-setlocal fdm=manual
-setlocal fde=nvim_treesitter#foldexpr()
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal nofen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 1548 - ((20 * winheight(0) + 22) / 44)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 1548
-normal! 018|
-wincmd w
-2wincmd w
-exe 'vert 1resize ' . ((&columns * 102 + 103) / 206)
-exe 'vert 2resize ' . ((&columns * 103 + 103) / 206)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
@@ -106,8 +63,6 @@ endif
 unlet! s:wipebuf
 set winheight=1 winwidth=20
 let &shortmess = s:shortmess_save
-let &winminheight = s:save_winminheight
-let &winminwidth = s:save_winminwidth
 let s:sx = expand("<sfile>:p:r")."x.vim"
 if filereadable(s:sx)
   exe "source " . fnameescape(s:sx)
