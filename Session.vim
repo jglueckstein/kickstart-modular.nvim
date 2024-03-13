@@ -13,7 +13,7 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +26 lua/custom/plugins/filetree.lua
+badd +1 lua/custom/plugins/filetree.lua
 badd +756 ~/.dotfiles/local/share/nvim/lazy/lazy.nvim/doc/lazy.nvim.txt
 badd +13 lua/custom/config/keymaps.lua
 badd +1878 ~/.dotfiles/local/share/nvim/lazy/neo-tree.nvim/doc/neo-tree.txt
@@ -30,32 +30,32 @@ setlocal fdl=5
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-4
+1
 normal! zo
-12
+9
 normal! zo
-13
+10
 normal! zo
-20
+17
 normal! zo
-26
+23
 normal! zo
-27
+24
 normal! zo
-28
+25
 normal! zo
-42
+39
 normal! zo
-43
+40
 normal! zo
-49
+46
 normal! zo
-let s:l = 26 - ((18 * winheight(0) + 22) / 44)
+let s:l = 1 - ((0 * winheight(0) + 19) / 38)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 26
-normal! 027|
+keepjumps 1
+normal! 08|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
