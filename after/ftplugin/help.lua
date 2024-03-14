@@ -1,4 +1,7 @@
 -- Help files suddenly started hiding links on 2024-03-13.  I figured out it was
 -- conceallevel being set in /usr/share/nvim/runtime/ftplugin/help.vim
 -- This article was helpful: https://vimways.org/2018/runtime-hackery/
-vim.opt.conceallevel = 0
+-- Turns out there was a breaking change in Neovim, and nvim-treesitter fixed
+-- the links being concealed: https://github.com/nvim-treesitter/nvim-treesitter/commit/3ae78f376c2e721ce4feb23e9a5e8bc6062a2657
+-- The following line is no longer needed.
+-- vim.opt.conceallevel = 0
