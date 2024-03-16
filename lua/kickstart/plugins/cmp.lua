@@ -15,6 +15,17 @@ return {
           end
           return 'make install_jsregexp'
         end)(),
+        dependencies = {
+          -- `friendly-snippets` contains a variety of premade snippets.
+          --    See the README about individual language/framework/plugin snippets:
+          --    https://github.com/rafamadriz/friendly-snippets
+          {
+            'rafamadriz/friendly-snippets',
+            config = function()
+              require('luasnip.loaders.from_vscode').lazy_load()
+            end,
+          },
+        },
       },
       'saadparwaiz1/cmp_luasnip',
 
@@ -23,12 +34,6 @@ return {
       --  into multiple repos for maintenance purposes.
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
-
-      -- If you want to add a bunch of pre-configured snippets,
-      --    you can use this plugin to help you. It even has snippets
-      --    for various frameworks/libraries/etc. but you will have to
-      --    set up the ones that are useful for you.
-      'rafamadriz/friendly-snippets',
     },
     config = function()
       -- See `:help cmp`
@@ -43,8 +48,6 @@ return {
         -- jcg Make luasnip update nodes as you type
         update_events = 'TextChanged,TextChangedI',
       }
-      -- jcg this is required to make friendly-snippets work
-      require('luasnip.loaders.from_vscode').lazy_load()
       -- jcg this is required to make my custom snippets work
       require('luasnip.loaders.from_lua').lazy_load { paths = '~/.config/nvim/lua/custom/snippets/' }
 
@@ -65,6 +68,10 @@ return {
           ['<C-n>'] = cmp.mapping.select_next_item(),
           -- Select the [p]revious item
           ['<C-p>'] = cmp.mapping.select_prev_item(),
+
+          -- scroll the documentation window [b]ack / [f]orward
+          ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+          ['<C-f>'] = cmp.mapping.scroll_docs(4),
 
           -- Accept ([y]es) the completion.
           --  This will auto-import if your LSP supports it.
@@ -94,6 +101,9 @@ return {
               luasnip.jump(-1)
             end
           end, { 'i', 's' }),
+
+          -- For more advanced luasnip keymaps (e.g. selecting choice nodes, expansion) see:
+          --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
         },
         sources = {
           { name = 'nvim_lsp' },
