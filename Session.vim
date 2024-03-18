@@ -14,25 +14,21 @@ else
   set shortmess=aoO
 endif
 badd +1 lua/custom/plugins/filetree.lua
-badd +259 ~/.dotfiles/local/share/nvim/lazy/lazy.nvim/doc/lazy.nvim.txt
 badd +13 lua/custom/config/keymaps.lua
-badd +1878 ~/.dotfiles/local/share/nvim/lazy/neo-tree.nvim/doc/neo-tree.txt
 badd +1 lua/lazy-bootstrap.lua
-badd +1 lua/lazy-plugins.lua
+badd +19 lua/lazy-plugins.lua
 badd +6 after/ftplugin/help.lua
+badd +1 lua/custom/config/globals.lua
+badd +3 lua/custom/config/init.lua
 argglobal
 %argdel
-edit lua/lazy-plugins.lua
+edit lua/custom/config/globals.lua
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
 wincmd _ | wincmd |
-split
-1wincmd k
-wincmd _ | wincmd |
 vsplit
 1wincmd h
-wincmd w
 wincmd w
 let &splitbelow = s:save_splitbelow
 let &splitright = s:save_splitright
@@ -43,35 +39,31 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe '1resize ' . ((&lines * 25 + 25) / 51)
 exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
-exe '2resize ' . ((&lines * 25 + 25) / 51)
 exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
-exe '3resize ' . ((&lines * 23 + 25) / 51)
 tcd ~/.dotfiles/config/nvim
 argglobal
-balt ~/.dotfiles/config/nvim/after/ftplugin/help.lua
 setlocal fdm=expr
 setlocal fde=nvim_treesitter#foldexpr()
 setlocal fmr={{{,}}}
 setlocal fdi=#
-setlocal fdl=4
+setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 19 - ((10 * winheight(0) + 12) / 25)
+let s:l = 1 - ((0 * winheight(0) + 24) / 49)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 19
+keepjumps 1
 normal! 0
 wincmd w
 argglobal
-if bufexists(fnamemodify("~/.dotfiles/config/nvim/after/ftplugin/help.lua", ":p")) | buffer ~/.dotfiles/config/nvim/after/ftplugin/help.lua | else | edit ~/.dotfiles/config/nvim/after/ftplugin/help.lua | endif
+if bufexists(fnamemodify("~/.dotfiles/config/nvim/lua/custom/config/init.lua", ":p")) | buffer ~/.dotfiles/config/nvim/lua/custom/config/init.lua | else | edit ~/.dotfiles/config/nvim/lua/custom/config/init.lua | endif
 if &buftype ==# 'terminal'
-  silent file ~/.dotfiles/config/nvim/after/ftplugin/help.lua
+  silent file ~/.dotfiles/config/nvim/lua/custom/config/init.lua
 endif
-balt ~/.dotfiles/config/nvim/lua/lazy-plugins.lua
+balt ~/.dotfiles/config/nvim/lua/custom/config/keymaps.lua
 setlocal fdm=expr
 setlocal fde=nvim_treesitter#foldexpr()
 setlocal fmr={{{,}}}
@@ -80,40 +72,16 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 6 - ((5 * winheight(0) + 12) / 25)
+let s:l = 3 - ((2 * winheight(0) + 24) / 49)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 6
-normal! 042|
+keepjumps 3
+normal! 0
 wincmd w
-argglobal
-if bufexists(fnamemodify("~/.dotfiles/local/share/nvim/lazy/lazy.nvim/doc/lazy.nvim.txt", ":p")) | buffer ~/.dotfiles/local/share/nvim/lazy/lazy.nvim/doc/lazy.nvim.txt | else | edit ~/.dotfiles/local/share/nvim/lazy/lazy.nvim/doc/lazy.nvim.txt | endif
-if &buftype ==# 'terminal'
-  silent file ~/.dotfiles/local/share/nvim/lazy/lazy.nvim/doc/lazy.nvim.txt
-endif
-balt ~/.dotfiles/config/nvim/lua/custom/plugins/filetree.lua
-setlocal fdm=expr
-setlocal fde=nvim_treesitter#foldexpr()
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-let s:l = 368 - ((11 * winheight(0) + 11) / 23)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 368
-normal! 05|
-wincmd w
-3wincmd w
-exe '1resize ' . ((&lines * 25 + 25) / 51)
+2wincmd w
 exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
-exe '2resize ' . ((&lines * 25 + 25) / 51)
 exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
-exe '3resize ' . ((&lines * 23 + 25) / 51)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
