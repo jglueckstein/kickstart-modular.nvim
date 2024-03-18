@@ -1,3 +1,5 @@
+require 'custom.config.globals'
+
 -- [[ Configure Vimtex ]]
 -- (tex and latex helper)
 require 'custom.config.vimtex-setup'
