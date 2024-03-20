@@ -14,21 +14,22 @@ else
   set shortmess=aoO
 endif
 badd +1 lua/custom/plugins/filetree.lua
-badd +13 lua/custom/config/keymaps.lua
+badd +30 lua/custom/config/keymaps.lua
 badd +1 lua/lazy-bootstrap.lua
 badd +19 lua/lazy-plugins.lua
 badd +6 after/ftplugin/help.lua
 badd +1 lua/custom/config/globals.lua
 badd +3 lua/custom/config/init.lua
+badd +3 lua/custom/plugins/dev.lua
 argglobal
 %argdel
-edit lua/custom/config/globals.lua
+edit lua/custom/config/keymaps.lua
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
 wincmd _ | wincmd |
-vsplit
-1wincmd h
+split
+1wincmd k
 wincmd w
 let &splitbelow = s:save_splitbelow
 let &splitright = s:save_splitright
@@ -39,10 +40,11 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
-exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
+exe '1resize ' . ((&lines * 24 + 25) / 51)
+exe '2resize ' . ((&lines * 24 + 25) / 51)
 tcd ~/.dotfiles/config/nvim
 argglobal
+balt ~/.dotfiles/config/nvim/lua/custom/plugins/dev.lua
 setlocal fdm=expr
 setlocal fde=nvim_treesitter#foldexpr()
 setlocal fmr={{{,}}}
@@ -51,37 +53,36 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 1 - ((0 * winheight(0) + 24) / 49)
+let s:l = 30 - ((23 * winheight(0) + 12) / 24)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 1
-normal! 0
+keepjumps 30
+normal! 077|
 wincmd w
 argglobal
-if bufexists(fnamemodify("~/.dotfiles/config/nvim/lua/custom/config/init.lua", ":p")) | buffer ~/.dotfiles/config/nvim/lua/custom/config/init.lua | else | edit ~/.dotfiles/config/nvim/lua/custom/config/init.lua | endif
-if &buftype ==# 'terminal'
-  silent file ~/.dotfiles/config/nvim/lua/custom/config/init.lua
-endif
-balt ~/.dotfiles/config/nvim/lua/custom/config/keymaps.lua
-setlocal fdm=expr
+enew | setl bt=help
+help lazy.nvim-lazy.nvim-plugin-spec@en
+balt ~/.dotfiles/config/nvim/lua/custom/plugins/dev.lua
+setlocal fdm=manual
 setlocal fde=nvim_treesitter#foldexpr()
 setlocal fmr={{{,}}}
 setlocal fdi=#
 setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
-setlocal fen
-let s:l = 3 - ((2 * winheight(0) + 24) / 49)
+setlocal nofen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 277 - ((13 * winheight(0) + 12) / 24)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 3
-normal! 0
+keepjumps 277
+normal! 05|
 wincmd w
-2wincmd w
-exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
-exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
+exe '1resize ' . ((&lines * 24 + 25) / 51)
+exe '2resize ' . ((&lines * 24 + 25) / 51)
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

@@ -25,3 +25,6 @@ map('n', '<C-S-Tab>', '<CMD>tabprevious<CR>', { desc = 'Previous Tab' })
 map('n', '<A-{>', '<CMD>-tabmove<CR>', { desc = 'Move Tab Backwards' })
 map('n', '<A-}>', '<CMD>+tabmove<CR>', { desc = 'Move Tab Forward' })
 map('n', 'st', '<CMD>tabnew<CR>', { desc = 'Window [S]plit: new [T]ab' })
+
+-- Dev keymaps
+map('n', '<Leader><Leader>x', '<CMD>source %<CR>', { desc = 'Source This File' })
