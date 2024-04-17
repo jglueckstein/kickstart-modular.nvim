@@ -51,11 +51,11 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 28 - ((27 * winheight(0) + 24) / 48)
+let s:l = 67 - ((35 * winheight(0) + 24) / 48)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 28
+keepjumps 67
 normal! 04|
 wincmd w
 argglobal
@@ -99,7 +99,8 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-wincmd =
+exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
+exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
 argglobal
 balt lua/kickstart/plugins/treesitter.lua
 setlocal fdm=expr
@@ -154,8 +155,9 @@ normal! zt
 keepjumps 14
 normal! 047|
 wincmd w
-wincmd =
-tabnext 2
+exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
+exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
+tabnext 1
 set stal=1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
