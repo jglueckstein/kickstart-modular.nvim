@@ -13,16 +13,17 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
+badd +103 init.lua
 badd +1 lua/custom/config/keymaps.lua
-badd +51 lua/keymaps.lua
-badd +43 lua/custom/plugins/treesitter.lua
-badd +14 lua/kickstart/plugins/treesitter.lua
+badd +1 lua/kickstart/plugins/which-key.lua
+badd +59 lua/kickstart/plugins/gitsigns.lua
+badd +1 lua/lazy-plugins.lua
 argglobal
 %argdel
 set stal=2
 tabnew +setlocal\ bufhidden=wipe
 tabrewind
-edit lua/custom/config/keymaps.lua
+edit lua/lazy-plugins.lua
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -42,7 +43,7 @@ set winwidth=1
 exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
 exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
 argglobal
-balt lua/keymaps.lua
+balt init.lua
 setlocal fdm=expr
 setlocal fde=nvim_treesitter#foldexpr()
 setlocal fmr={{{,}}}
@@ -51,20 +52,24 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 67 - ((35 * winheight(0) + 24) / 48)
+12
+normal! zo
+12
+normal! zo
+let s:l = 45 - ((36 * winheight(0) + 23) / 47)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 67
-normal! 04|
+keepjumps 45
+normal! 0
 wincmd w
 argglobal
-if bufexists(fnamemodify("lua/keymaps.lua", ":p")) | buffer lua/keymaps.lua | else | edit lua/keymaps.lua | endif
+if bufexists(fnamemodify("lua/custom/config/keymaps.lua", ":p")) | buffer lua/custom/config/keymaps.lua | else | edit lua/custom/config/keymaps.lua | endif
 if &buftype ==# 'terminal'
-  silent file lua/keymaps.lua
+  silent file lua/custom/config/keymaps.lua
 endif
-balt lua/custom/config/keymaps.lua
-setlocal fdm=expr
+balt init.lua
+setlocal fdm=marker
 setlocal fde=nvim_treesitter#foldexpr()
 setlocal fmr={{{,}}}
 setlocal fdi=#
@@ -72,17 +77,19 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 51 - ((49 * winheight(0) + 24) / 48)
+1
+normal! zo
+let s:l = 1 - ((0 * winheight(0) + 23) / 47)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 51
-normal! 04|
+keepjumps 1
+normal! 0
 wincmd w
 exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
 exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
 tabnext
-edit lua/custom/plugins/treesitter.lua
+edit lua/kickstart/plugins/which-key.lua
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -102,7 +109,7 @@ set winwidth=1
 exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
 exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
 argglobal
-balt lua/kickstart/plugins/treesitter.lua
+balt lua/kickstart/plugins/gitsigns.lua
 setlocal fdm=expr
 setlocal fde=nvim_treesitter#foldexpr()
 setlocal fmr={{{,}}}
@@ -111,53 +118,38 @@ setlocal fdl=4
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-1
-normal! zo
-2
-normal! zo
-4
-normal! zo
-34
-normal! zo
-36
-normal! zo
-let s:l = 43 - ((37 * winheight(0) + 24) / 48)
+let s:l = 1 - ((0 * winheight(0) + 23) / 47)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 43
-normal! 05|
+keepjumps 1
+normal! 0
 wincmd w
 argglobal
-if bufexists(fnamemodify("lua/kickstart/plugins/treesitter.lua", ":p")) | buffer lua/kickstart/plugins/treesitter.lua | else | edit lua/kickstart/plugins/treesitter.lua | endif
+if bufexists(fnamemodify("lua/kickstart/plugins/gitsigns.lua", ":p")) | buffer lua/kickstart/plugins/gitsigns.lua | else | edit lua/kickstart/plugins/gitsigns.lua | endif
 if &buftype ==# 'terminal'
-  silent file lua/kickstart/plugins/treesitter.lua
+  silent file lua/kickstart/plugins/gitsigns.lua
 endif
-balt lua/custom/plugins/treesitter.lua
+balt lua/kickstart/plugins/which-key.lua
 setlocal fdm=expr
 setlocal fde=nvim_treesitter#foldexpr()
 setlocal fmr={{{,}}}
 setlocal fdi=#
-setlocal fdl=4
+setlocal fdl=6
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-1
-normal! zo
-2
-normal! zo
-5
-normal! zo
-let s:l = 14 - ((13 * winheight(0) + 24) / 48)
+let s:l = 59 - ((24 * winheight(0) + 23) / 47)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 14
-normal! 047|
+keepjumps 59
+normal! 0
 wincmd w
+2wincmd w
 exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
 exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
-tabnext 1
+tabnext 2
 set stal=1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
