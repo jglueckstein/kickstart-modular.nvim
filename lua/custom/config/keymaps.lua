@@ -65,7 +65,7 @@ map('n', '<C-Tab>', '<CMD>tabnext<CR>', { desc = 'Next Tab' })
 map('n', '<C-S-Tab>', '<CMD>tabprevious<CR>', { desc = 'Previous Tab' })
 map('n', '<A-{>', '<CMD>-tabmove<CR>', { desc = 'Move Tab Backwards' })
 map('n', '<A-}>', '<CMD>+tabmove<CR>', { desc = 'Move Tab Forward' })
-map('n', 'st', '<CMD>tabnew<CR>', { desc = 'Window [S]plit: new [T]ab' })
+map('n', '<A-t>', '<CMD>tabnew<CR>', { desc = 'Window [S]plit: new [T]ab' })
 
 -- ------------------------------------------------------------------------- }}}
 -- {{{ Dev keymaps
