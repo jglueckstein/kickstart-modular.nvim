@@ -14,22 +14,35 @@ else
   set shortmess=aoO
 endif
 badd +103 init.lua
-badd +1 lua/custom/config/keymaps.lua
+badd +49 lua/custom/config/keymaps.lua
 badd +1 lua/kickstart/plugins/which-key.lua
 badd +59 lua/kickstart/plugins/gitsigns.lua
-badd +1 lua/lazy-plugins.lua
+badd +45 lua/lazy-plugins.lua
+badd +1 ~/.dotfiles/config/nvim/lua/custom/plugins/init.lua
+badd +1 ~/.dotfiles/config/nvim/lua/custom/plugins/treesitter.lua
+badd +1 lua/kickstart/plugins/treesitter.lua
+badd +18 lua/kickstart/plugins/conform.lua
+badd +21 ~/.dotfiles/config/nvim/lua/custom/plugins/conform.lua
+badd +3 lua/kickstart/plugins/lint.lua
+badd +12 lua/custom/plugins/lint.lua
+badd +39 lua/kickstart/plugins/lspconfig.lua
+badd +2 lua/custom/plugins/lspconfig.lua
 argglobal
 %argdel
 set stal=2
 tabnew +setlocal\ bufhidden=wipe
 tabrewind
-edit lua/lazy-plugins.lua
+edit lua/kickstart/plugins/conform.lua
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
 1wincmd h
+wincmd w
+wincmd _ | wincmd |
+split
+1wincmd k
 wincmd w
 let &splitbelow = s:save_splitbelow
 let &splitright = s:save_splitright
@@ -40,54 +53,73 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
-exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
+wincmd =
 argglobal
-balt init.lua
+balt lua/kickstart/plugins/lspconfig.lua
 setlocal fdm=expr
 setlocal fde=nvim_treesitter#foldexpr()
 setlocal fmr={{{,}}}
 setlocal fdi=#
-setlocal fdl=0
+setlocal fdl=5
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-12
-normal! zo
-12
-normal! zo
-let s:l = 45 - ((36 * winheight(0) + 23) / 47)
+let s:l = 18 - ((17 * winheight(0) + 28) / 57)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 45
+keepjumps 18
 normal! 0
 wincmd w
 argglobal
-if bufexists(fnamemodify("lua/custom/config/keymaps.lua", ":p")) | buffer lua/custom/config/keymaps.lua | else | edit lua/custom/config/keymaps.lua | endif
+if bufexists(fnamemodify("lua/custom/plugins/lint.lua", ":p")) | buffer lua/custom/plugins/lint.lua | else | edit lua/custom/plugins/lint.lua | endif
 if &buftype ==# 'terminal'
-  silent file lua/custom/config/keymaps.lua
+  silent file lua/custom/plugins/lint.lua
 endif
-balt init.lua
-setlocal fdm=marker
+balt ~/.dotfiles/config/nvim/lua/custom/plugins/conform.lua
+setlocal fdm=expr
 setlocal fde=nvim_treesitter#foldexpr()
 setlocal fmr={{{,}}}
 setlocal fdi=#
-setlocal fdl=0
+setlocal fdl=5
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
 1
 normal! zo
-let s:l = 1 - ((0 * winheight(0) + 23) / 47)
+3
+normal! zo
+6
+normal! zo
+let s:l = 12 - ((11 * winheight(0) + 14) / 28)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 1
+keepjumps 12
+normal! 09|
+wincmd w
+argglobal
+enew | setl bt=help
+help mason-tool-installer.nvim-events@en
+balt ~/.dotfiles/config/nvim/lua/custom/plugins/conform.lua
+setlocal fdm=manual
+setlocal fde=nvim_treesitter#foldexpr()
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal nofen
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 95 - ((13 * winheight(0) + 14) / 28)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 95
 normal! 0
 wincmd w
-exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
-exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
+wincmd =
 tabnext
 edit lua/kickstart/plugins/which-key.lua
 let s:save_splitbelow = &splitbelow
@@ -106,8 +138,7 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
-exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
+wincmd =
 argglobal
 balt lua/kickstart/plugins/gitsigns.lua
 setlocal fdm=expr
@@ -118,7 +149,7 @@ setlocal fdl=4
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 1 - ((0 * winheight(0) + 23) / 47)
+let s:l = 1 - ((0 * winheight(0) + 28) / 57)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -139,16 +170,14 @@ setlocal fdl=6
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 59 - ((24 * winheight(0) + 23) / 47)
+let s:l = 59 - ((30 * winheight(0) + 28) / 57)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
 keepjumps 59
 normal! 0
 wincmd w
-2wincmd w
-exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
-exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
+wincmd =
 tabnext 2
 set stal=1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
@@ -165,7 +194,6 @@ if filereadable(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
 set hlsearch
-nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :
