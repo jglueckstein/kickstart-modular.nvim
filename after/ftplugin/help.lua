@@ -1,7 +1,43 @@
--- Help files suddenly started hiding links on 2024-03-13.  I figured out it was
--- conceallevel being set in /usr/share/nvim/runtime/ftplugin/help.vim
--- This article was helpful: https://vimways.org/2018/runtime-hackery/
--- Turns out there was a breaking change in Neovim, and nvim-treesitter fixed
--- the links being concealed: https://github.com/nvim-treesitter/nvim-treesitter/commit/3ae78f376c2e721ce4feb23e9a5e8bc6062a2657
--- The following line is no longer needed.
--- vim.opt.conceallevel = 0
+-- Help utilities
+--
+
+if vim.bo.buftype ~= 'help' then
+  return
+end
+
+vim.opt_local.spell = false
+vim.opt_local.list = false
+
+local map = vim.keymap.set
+
+map('n', '<Leader>o', 'gO', { remap = true, buffer = 0, desc = 'view table [o]f contents' })
+map('n', 'o', "/'[a-z]\\{2,\\}'<CR>:nohlsearch<CR>zz", {
+  silent = true,
+  buffer = 0,
+  desc = 'move to next option link',
+})
+map('n', 'O', "?'[a-z]\\{2,\\}'<CR>:nohlsearch<CR>zz", {
+  silent = true,
+  buffer = 0,
+  desc = 'move to previous option link',
+})
+map('n', '<Tab>', '/|\\S\\+|<CR>:nohlsearch<CR>zz', {
+  silent = true,
+  buffer = 0,
+  desc = 'move to next related link',
+})
+map('n', '<S-Tab>', 'h?|\\S\\+|<CR>:nohlsearch<CR>zz', {
+  silent = true,
+  buffer = 0,
+  desc = 'move to previous related link',
+})
+map('n', 'p', '/\\*\\S\\+\\*<CR>:nohlsearch<CR>zz', {
+  silent = true,
+  buffer = 0,
+  desc = 'move to next anchor link',
+})
+map('n', 'P', 'h?\\*\\S\\+\\*<CR>:nohlsearch<CR>zz', {
+  silent = true,
+  buffer = 0,
+  desc = 'move to previous anchor link',
+})
