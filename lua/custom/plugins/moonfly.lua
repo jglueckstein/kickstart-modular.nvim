@@ -22,7 +22,7 @@ return {
       vim.g.moonflyTerminalColors = true
 
       -- whether to use a transparent background
-      vim.g.moonflyTransparent = false
+      vim.g.moonflyTransparent = true
 
       -- whether to use undercurls for spelling and linting errors
       vim.g.moonflyUndercurls = true
