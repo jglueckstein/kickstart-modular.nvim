@@ -103,5 +103,15 @@ map({ 'n', 'v' }, '<Leader>d', '"_d', { desc = '[D]elete without changing clipbo
 map('n', '<Leader>Y', '"+Y', { desc = '[Y]ank line to clipboard' })
 
 -- ------------------------------------------------------------------------- }}}
+-- {{{ Terminal keymaps
+
+map('t', '<C-h>', '<CMD>wincmd h<CR>', { desc = 'Go to left window' })
+map('t', '<C-j>', '<CMD>wincmd j<CR>', { desc = 'Go to lower window' })
+map('t', '<C-k>', '<CMD>wincmd k<CR>', { desc = 'Go to upper window' })
+map('t', '<C-l>', '<CMD>wincmd l<CR>', { desc = 'Go to right window' })
+map('t', '<C-/>', '<CMD>close<CR>', { desc = 'Hide terminal' })
+map('t', '<ESC><ESC>', '<C-\\><C-n>', { desc = 'Enter normal mode' })
+
+-- ------------------------------------------------------------------------- }}}
 
 -- vim:tw=80:ts=4:foldlevel=0:foldmethod=marker

@@ -19,18 +19,22 @@ badd +1 lua/kickstart/plugins/which-key.lua
 badd +59 lua/kickstart/plugins/gitsigns.lua
 badd +45 lua/lazy-plugins.lua
 badd +1 ~/.dotfiles/config/nvim/lua/custom/plugins/init.lua
-badd +1 ~/.dotfiles/config/nvim/lua/custom/plugins/treesitter.lua
+badd +7 ~/.dotfiles/config/nvim/lua/custom/plugins/treesitter.lua
 badd +1 lua/kickstart/plugins/treesitter.lua
 badd +18 lua/kickstart/plugins/conform.lua
 badd +21 ~/.dotfiles/config/nvim/lua/custom/plugins/conform.lua
 badd +3 lua/kickstart/plugins/lint.lua
-badd +12 lua/custom/plugins/lint.lua
+badd +15 lua/custom/plugins/lint.lua
 badd +39 lua/kickstart/plugins/lspconfig.lua
 badd +2 lua/custom/plugins/lspconfig.lua
-badd +41 after/ftplugin/help.lua
+badd +1 after/ftplugin/help.lua
+badd +10 ~/.dotfiles/config/nvim/lua/custom/plugins/term.lua
+badd +3 lua/custom/plugins/autopairs.lua
+badd +1 lua/custom/plugins/zk.lua
 argglobal
 %argdel
 set stal=2
+tabnew +setlocal\ bufhidden=wipe
 tabnew +setlocal\ bufhidden=wipe
 tabrewind
 edit after/ftplugin/help.lua
@@ -120,7 +124,6 @@ normal! zt
 keepjumps 6
 normal! 0
 wincmd w
-2wincmd w
 exe '1resize ' . ((&lines * 23 + 25) / 51)
 exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
 exe '2resize ' . ((&lines * 24 + 25) / 51)
@@ -186,7 +189,76 @@ normal! 0
 wincmd w
 exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
 exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
-tabnext 1
+tabnext
+edit lua/custom/plugins/zk.lua
+let s:save_splitbelow = &splitbelow
+let s:save_splitright = &splitright
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+let &splitbelow = s:save_splitbelow
+let &splitright = s:save_splitright
+wincmd t
+let s:save_winminheight = &winminheight
+let s:save_winminwidth = &winminwidth
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
+exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
+argglobal
+balt ~/.dotfiles/config/nvim/lua/custom/plugins/treesitter.lua
+setlocal fdm=expr
+setlocal fde=nvim_treesitter#foldexpr()
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=5
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+let s:l = 1 - ((0 * winheight(0) + 24) / 48)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 1
+normal! 0
+wincmd w
+argglobal
+if bufexists(fnamemodify("~/.dotfiles/config/nvim/lua/custom/plugins/term.lua", ":p")) | buffer ~/.dotfiles/config/nvim/lua/custom/plugins/term.lua | else | edit ~/.dotfiles/config/nvim/lua/custom/plugins/term.lua | endif
+if &buftype ==# 'terminal'
+  silent file ~/.dotfiles/config/nvim/lua/custom/plugins/term.lua
+endif
+balt lua/custom/plugins/lint.lua
+setlocal fdm=expr
+setlocal fde=nvim_treesitter#foldexpr()
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=3
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+1
+normal! zo
+3
+normal! zo
+4
+normal! zo
+9
+normal! zo
+let s:l = 10 - ((9 * winheight(0) + 24) / 48)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 10
+normal! 08|
+wincmd w
+2wincmd w
+exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
+exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
+tabnext 3
 set stal=1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
