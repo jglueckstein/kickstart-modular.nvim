@@ -28,7 +28,7 @@ badd +15 lua/custom/plugins/lint.lua
 badd +39 lua/kickstart/plugins/lspconfig.lua
 badd +2 lua/custom/plugins/lspconfig.lua
 badd +1 after/ftplugin/help.lua
-badd +30 ~/.dotfiles/config/nvim/lua/custom/plugins/term.lua
+badd +32 ~/.dotfiles/config/nvim/lua/custom/plugins/term.lua
 badd +3 lua/custom/plugins/autopairs.lua
 badd +1 lua/custom/plugins/zk.lua
 argglobal
@@ -244,20 +244,16 @@ setlocal fen
 normal! zo
 3
 normal! zo
-20
+4
 normal! zo
 21
 normal! zo
-21
-normal! zo
-21
-normal! zo
-let s:l = 31 - ((28 * winheight(0) + 24) / 48)
+let s:l = 32 - ((31 * winheight(0) + 24) / 48)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 31
-normal! 020|
+keepjumps 32
+normal! 022|
 wincmd w
 2wincmd w
 exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
@@ -278,7 +274,6 @@ if filereadable(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
 set hlsearch
-nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :

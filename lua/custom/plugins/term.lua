@@ -27,8 +27,9 @@ return {
         border = 'curved',
         -- like `size`, width, height, row, and col can be a number or function
         -- which is passed the current terminal
-        height = 100, -- height in character cells
-        winblend = 3, -- 0 (opaque) to 100 (transparent)
+        height = 40, -- height in character cells
+        width = 120, -- width in character cells
+        winblend = 30, -- 0 (opaque) to 100 (transparent)
       },
     }
   end,
