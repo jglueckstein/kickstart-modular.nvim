@@ -111,6 +111,13 @@ map('t', '<C-k>', '<CMD>wincmd k<CR>', { desc = 'Go to upper window' })
 map('t', '<C-l>', '<CMD>wincmd l<CR>', { desc = 'Go to right window' })
 map('t', '<C-/>', '<CMD>close<CR>', { desc = 'Hide terminal' })
 map('t', '<ESC><ESC>', '<C-\\><C-n>', { desc = 'Enter normal mode' })
+map('n', '<Leader>ttf', '<CMD>ToggleTerm direction=float<CR>', { desc = '[T]oggle[T]erm [F]loat' })
+map('n', '<Leader>tth', '<CMD>ToggleTerm size=10 direction=horizontal<CR>', {
+  desc = '[T]oggle[T]erm [H]orizontal',
+})
+map('n', '<Leader>ttv', '<CMD>ToggleTerm size=80 direction=vertical<CR>', {
+  desc = '[T]oggle[T]erm [V]ertical',
+})
 
 -- ------------------------------------------------------------------------- }}}
 

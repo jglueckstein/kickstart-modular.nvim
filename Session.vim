@@ -14,7 +14,7 @@ else
   set shortmess=aoO
 endif
 badd +103 init.lua
-badd +1 lua/custom/config/keymaps.lua
+badd +119 lua/custom/config/keymaps.lua
 badd +1 lua/kickstart/plugins/which-key.lua
 badd +59 lua/kickstart/plugins/gitsigns.lua
 badd +45 lua/lazy-plugins.lua
@@ -115,15 +115,16 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-6
+106
 normal! zo
-let s:l = 6 - ((5 * winheight(0) + 24) / 48)
+let s:l = 119 - ((118 * winheight(0) + 24) / 48)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 6
-normal! 0
+keepjumps 119
+normal! 035|
 wincmd w
+3wincmd w
 exe '1resize ' . ((&lines * 23 + 25) / 51)
 exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
 exe '2resize ' . ((&lines * 24 + 25) / 51)
@@ -255,10 +256,9 @@ normal! zt
 keepjumps 32
 normal! 022|
 wincmd w
-2wincmd w
 exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
 exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
-tabnext 3
+tabnext 1
 set stal=1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
