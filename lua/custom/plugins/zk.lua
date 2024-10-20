@@ -56,4 +56,9 @@ return {
   vim.keymap.set('n', '<Leader>zj', function()
     require('zk').new { dir = 'journal/daily' }
   end, { noremap = true, silent = false, desc = '[Z]ettelkasten new [J]ournal entry' }),
+
+  -- Create or edit yesterday's journal entry
+  vim.keymap.set('n', '<Leader>zy', function()
+    require('zk').new { dir = 'journal/daily', date = 'yesterday' }
+  end, { noremap = true, silent = false, desc = "[Z]ettelkasten [Y]esterday's journal entry" }),
 }
