@@ -55,6 +55,16 @@ map('n', '<Leader>tb', '<CMD>Neotree toggle show buffers<CR>', { desc = 'neo[T]r
 map('n', '<Leader>tg', '<CMD>Neotree float git_status<CR>', { desc = 'neo[T]ree show files [G]it status' })
 
 -- ------------------------------------------------------------------------- }}}
+-- {{{ Window management keymaps
+
+map('n', '<Localleader>sc', '<CMD>close<CR>', { desc = '[S]plit [C]lose (window close)' })
+map('n', '<Localleader>sd', '<CMD>bdelete<CR>', { desc = '[S]plit [D]elete (buffer delete)' })
+map('n', '<Localleader>ss', '<CMD>split<CR>', { desc = '[S]plit [S]plit (open window below)' })
+map('n', '<Localleader>sv', '<CMD>vsplit<CR>', { desc = '[S]plit [V]ertical (open window to right)' })
+map('n', '<Localleader>st', '<CMD>tabnew<CR>', { desc = '[S]plit [T]ab (open new tab)' })
+map('n', '<Localleader>so', '<CMD>only<CR>', { desc = '[S]plit [O]nly (close other windows)' })
+
+-- ------------------------------------------------------------------------- }}}
 -- {{{ Tab keymaps
 
 map('n', '<A-j>', '<CMD>tabnext<CR>', { desc = 'Next Tab' })
