@@ -31,6 +31,7 @@ badd +1 after/ftplugin/help.lua
 badd +32 ~/.dotfiles/config/nvim/lua/custom/plugins/term.lua
 badd +3 lua/custom/plugins/autopairs.lua
 badd +1 lua/custom/plugins/zk.lua
+badd +25 ~/.dotfiles/config/nvim/lua/custom/plugins/md-preview.lua
 argglobal
 %argdel
 set stal=2
@@ -58,22 +59,22 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe '1resize ' . ((&lines * 23 + 25) / 51)
+exe '1resize ' . ((&lines * 22 + 25) / 51)
 exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
 exe '2resize ' . ((&lines * 24 + 25) / 51)
 exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
 exe 'vert 3resize ' . ((&columns * 115 + 115) / 231)
 argglobal
 balt lua/kickstart/plugins/conform.lua
-setlocal fdm=expr
-setlocal fde=nvim_treesitter#foldexpr()
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=1
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-let s:l = 41 - ((20 * winheight(0) + 11) / 23)
+setlocal foldmethod=expr
+setlocal foldexpr=nvim_treesitter#foldexpr()
+setlocal foldmarker={{{,}}}
+setlocal foldignore=#
+setlocal foldlevel=1
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldenable
+let s:l = 41 - ((11 * winheight(0) + 11) / 22)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -84,21 +85,21 @@ argglobal
 enew | setl bt=help
 help help.txt@en
 balt after/ftplugin/help.lua
-setlocal fdm=manual
-setlocal fde=nvim_treesitter#foldexpr()
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal nofen
+setlocal foldmethod=manual
+setlocal foldexpr=nvim_treesitter#foldexpr()
+setlocal foldmarker={{{,}}}
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal nofoldenable
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 196 - ((11 * winheight(0) + 12) / 24)
+let s:l = 250 - ((10 * winheight(0) + 12) / 24)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 196
+keepjumps 250
 normal! 0
 wincmd w
 argglobal
@@ -107,25 +108,24 @@ if &buftype ==# 'terminal'
   silent file lua/custom/config/keymaps.lua
 endif
 balt lua/custom/plugins/lint.lua
-setlocal fdm=marker
-setlocal fde=nvim_treesitter#foldexpr()
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-106
+setlocal foldmethod=marker
+setlocal foldexpr=nvim_treesitter#foldexpr()
+setlocal foldmarker={{{,}}}
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldenable
+101
 normal! zo
-let s:l = 119 - ((118 * winheight(0) + 24) / 48)
+let s:l = 119 - ((118 * winheight(0) + 23) / 47)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
 keepjumps 119
-normal! 035|
+normal! 0
 wincmd w
-3wincmd w
-exe '1resize ' . ((&lines * 23 + 25) / 51)
+exe '1resize ' . ((&lines * 22 + 25) / 51)
 exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
 exe '2resize ' . ((&lines * 24 + 25) / 51)
 exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
@@ -152,15 +152,15 @@ exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
 exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
 argglobal
 balt lua/kickstart/plugins/gitsigns.lua
-setlocal fdm=expr
-setlocal fde=nvim_treesitter#foldexpr()
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=4
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-let s:l = 1 - ((0 * winheight(0) + 24) / 48)
+setlocal foldmethod=expr
+setlocal foldexpr=nvim_treesitter#foldexpr()
+setlocal foldmarker={{{,}}}
+setlocal foldignore=#
+setlocal foldlevel=4
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldenable
+let s:l = 1 - ((0 * winheight(0) + 23) / 47)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -173,15 +173,15 @@ if &buftype ==# 'terminal'
   silent file lua/kickstart/plugins/gitsigns.lua
 endif
 balt lua/kickstart/plugins/which-key.lua
-setlocal fdm=expr
-setlocal fde=nvim_treesitter#foldexpr()
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=6
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-let s:l = 59 - ((25 * winheight(0) + 24) / 48)
+setlocal foldmethod=expr
+setlocal foldexpr=nvim_treesitter#foldexpr()
+setlocal foldmarker={{{,}}}
+setlocal foldignore=#
+setlocal foldlevel=6
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldenable
+let s:l = 59 - ((24 * winheight(0) + 23) / 47)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -212,15 +212,15 @@ exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
 exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
 argglobal
 balt ~/.dotfiles/config/nvim/lua/custom/plugins/treesitter.lua
-setlocal fdm=expr
-setlocal fde=nvim_treesitter#foldexpr()
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=5
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-let s:l = 1 - ((0 * winheight(0) + 24) / 48)
+setlocal foldmethod=expr
+setlocal foldexpr=nvim_treesitter#foldexpr()
+setlocal foldmarker={{{,}}}
+setlocal foldignore=#
+setlocal foldlevel=5
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldenable
+let s:l = 1 - ((0 * winheight(0) + 23) / 47)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -228,37 +228,30 @@ keepjumps 1
 normal! 0
 wincmd w
 argglobal
-if bufexists(fnamemodify("~/.dotfiles/config/nvim/lua/custom/plugins/term.lua", ":p")) | buffer ~/.dotfiles/config/nvim/lua/custom/plugins/term.lua | else | edit ~/.dotfiles/config/nvim/lua/custom/plugins/term.lua | endif
+if bufexists(fnamemodify("~/.dotfiles/config/nvim/lua/custom/plugins/md-preview.lua", ":p")) | buffer ~/.dotfiles/config/nvim/lua/custom/plugins/md-preview.lua | else | edit ~/.dotfiles/config/nvim/lua/custom/plugins/md-preview.lua | endif
 if &buftype ==# 'terminal'
-  silent file ~/.dotfiles/config/nvim/lua/custom/plugins/term.lua
+  silent file ~/.dotfiles/config/nvim/lua/custom/plugins/md-preview.lua
 endif
-balt lua/custom/plugins/lint.lua
-setlocal fdm=expr
-setlocal fde=nvim_treesitter#foldexpr()
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=3
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-1
-normal! zo
-3
-normal! zo
-4
-normal! zo
-21
-normal! zo
-let s:l = 32 - ((31 * winheight(0) + 24) / 48)
+balt ~/.dotfiles/config/nvim/lua/custom/plugins/term.lua
+setlocal foldmethod=expr
+setlocal foldexpr=nvim_treesitter#foldexpr()
+setlocal foldmarker={{{,}}}
+setlocal foldignore=#
+setlocal foldlevel=4
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldenable
+let s:l = 25 - ((24 * winheight(0) + 23) / 47)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 32
-normal! 022|
+keepjumps 25
+normal! 04|
 wincmd w
+2wincmd w
 exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
 exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
-tabnext 1
+tabnext 3
 set stal=1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
@@ -274,6 +267,7 @@ if filereadable(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
 set hlsearch
+nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :
