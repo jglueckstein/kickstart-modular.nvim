@@ -31,7 +31,8 @@ badd +1 after/ftplugin/help.lua
 badd +32 ~/.dotfiles/config/nvim/lua/custom/plugins/term.lua
 badd +3 lua/custom/plugins/autopairs.lua
 badd +1 lua/custom/plugins/zk.lua
-badd +25 ~/.dotfiles/config/nvim/lua/custom/plugins/md-preview.lua
+badd +10 ~/.dotfiles/config/nvim/lua/custom/plugins/md-preview.lua
+badd +3 ~/.dotfiles/config/nvim/lua/custom/plugins/bullets.lua
 argglobal
 %argdel
 set stal=2
@@ -211,7 +212,7 @@ set winwidth=1
 exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
 exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
 argglobal
-balt ~/.dotfiles/config/nvim/lua/custom/plugins/treesitter.lua
+balt ~/.dotfiles/config/nvim/lua/custom/plugins/bullets.lua
 setlocal foldmethod=expr
 setlocal foldexpr=nvim_treesitter#foldexpr()
 setlocal foldmarker={{{,}}}
@@ -228,25 +229,25 @@ keepjumps 1
 normal! 0
 wincmd w
 argglobal
-if bufexists(fnamemodify("~/.dotfiles/config/nvim/lua/custom/plugins/md-preview.lua", ":p")) | buffer ~/.dotfiles/config/nvim/lua/custom/plugins/md-preview.lua | else | edit ~/.dotfiles/config/nvim/lua/custom/plugins/md-preview.lua | endif
+if bufexists(fnamemodify("~/.dotfiles/config/nvim/lua/custom/plugins/bullets.lua", ":p")) | buffer ~/.dotfiles/config/nvim/lua/custom/plugins/bullets.lua | else | edit ~/.dotfiles/config/nvim/lua/custom/plugins/bullets.lua | endif
 if &buftype ==# 'terminal'
-  silent file ~/.dotfiles/config/nvim/lua/custom/plugins/md-preview.lua
+  silent file ~/.dotfiles/config/nvim/lua/custom/plugins/bullets.lua
 endif
-balt ~/.dotfiles/config/nvim/lua/custom/plugins/term.lua
+balt lua/custom/plugins/zk.lua
 setlocal foldmethod=expr
 setlocal foldexpr=nvim_treesitter#foldexpr()
 setlocal foldmarker={{{,}}}
 setlocal foldignore=#
-setlocal foldlevel=4
+setlocal foldlevel=0
 setlocal foldminlines=1
 setlocal foldnestmax=20
 setlocal foldenable
-let s:l = 25 - ((24 * winheight(0) + 23) / 47)
+let s:l = 15 - ((14 * winheight(0) + 23) / 47)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 25
-normal! 04|
+keepjumps 15
+normal! 080|
 wincmd w
 2wincmd w
 exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)

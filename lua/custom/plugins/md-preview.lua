@@ -1,3 +1,17 @@
+-- /home/jon/.dotfiles/config/nvim/lua/custom/plugins/md-preview.lua
+--
+-- These plugins display markdown-formatted files.  markdown-preview has to be
+-- started manually, and opens the document in a new tab in the default web
+-- browser.  This document is synced to the file in nvim, so edits are displayed
+-- live and moving around in the editor is mirrored in the displayed document.
+-- render-markdown automatically renders the document in the following modes:
+-- normal, command-line editing, and terminal.
+--
+-- render-markdown also offers a completion source, so I've set that up for cmp.
+--
+-- :h render-markdown
+-- :h markdown-preview
+
 local cmp = require 'cmp'
 return {
   {
