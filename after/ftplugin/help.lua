@@ -26,7 +26,7 @@ map('n', '<Tab>', '/|\\S\\+|<CR>:nohlsearch<CR>zz', {
   buffer = 0,
   desc = 'move to next related link',
 })
-map('n', '<S-Tab>', 'h?|\\S\\+|<CR>:nohlsearch<CR>zz', {
+map('n', '<S-Tab>', '?|\\S\\+|<CR>:nohlsearch<CR>zz', {
   silent = true,
   buffer = 0,
   desc = 'move to previous related link',
@@ -36,7 +36,7 @@ map('n', 'p', '/\\*\\S\\+\\*<CR>:nohlsearch<CR>zz', {
   buffer = 0,
   desc = 'move to next anchor link',
 })
-map('n', 'P', 'h?\\*\\S\\+\\*<CR>:nohlsearch<CR>zz', {
+map('n', 'P', '?\\*\\S\\+\\*<CR>:nohlsearch<CR>zz', {
   silent = true,
   buffer = 0,
   desc = 'move to previous anchor link',

@@ -31,12 +31,12 @@ badd +1 after/ftplugin/help.lua
 badd +32 ~/.dotfiles/config/nvim/lua/custom/plugins/term.lua
 badd +3 lua/custom/plugins/autopairs.lua
 badd +1 lua/custom/plugins/zk.lua
-badd +10 ~/.dotfiles/config/nvim/lua/custom/plugins/md-preview.lua
-badd +3 ~/.dotfiles/config/nvim/lua/custom/plugins/bullets.lua
+badd +34 ~/.dotfiles/config/nvim/lua/custom/plugins/md-preview.lua
+badd +15 ~/.dotfiles/config/nvim/lua/custom/plugins/bullets.lua
+badd +75 lua/custom/plugins/telescope.lua
 argglobal
 %argdel
 set stal=2
-tabnew +setlocal\ bufhidden=wipe
 tabnew +setlocal\ bufhidden=wipe
 tabrewind
 edit after/ftplugin/help.lua
@@ -75,11 +75,11 @@ setlocal foldlevel=1
 setlocal foldminlines=1
 setlocal foldnestmax=20
 setlocal foldenable
-let s:l = 41 - ((11 * winheight(0) + 11) / 22)
+let s:l = 21 - ((10 * winheight(0) + 11) / 22)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 41
+keepjumps 21
 normal! 013|
 wincmd w
 argglobal
@@ -96,12 +96,12 @@ setlocal foldnestmax=20
 setlocal nofoldenable
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 250 - ((10 * winheight(0) + 12) / 24)
+let s:l = 45 - ((11 * winheight(0) + 12) / 24)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 250
-normal! 0
+keepjumps 45
+normal! 041|
 wincmd w
 argglobal
 if bufexists(fnamemodify("lua/custom/config/keymaps.lua", ":p")) | buffer lua/custom/config/keymaps.lua | else | edit lua/custom/config/keymaps.lua | endif
@@ -132,27 +132,9 @@ exe '2resize ' . ((&lines * 24 + 25) / 51)
 exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
 exe 'vert 3resize ' . ((&columns * 115 + 115) / 231)
 tabnext
-edit lua/kickstart/plugins/which-key.lua
-let s:save_splitbelow = &splitbelow
-let s:save_splitright = &splitright
-set splitbelow splitright
-wincmd _ | wincmd |
-vsplit
-1wincmd h
-wincmd w
-let &splitbelow = s:save_splitbelow
-let &splitright = s:save_splitright
-wincmd t
-let s:save_winminheight = &winminheight
-let s:save_winminwidth = &winminwidth
-set winminheight=0
-set winheight=1
-set winminwidth=0
-set winwidth=1
-exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
-exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
+edit lua/custom/plugins/telescope.lua
 argglobal
-balt lua/kickstart/plugins/gitsigns.lua
+balt ~/.dotfiles/config/nvim/lua/custom/plugins/md-preview.lua
 setlocal foldmethod=expr
 setlocal foldexpr=nvim_treesitter#foldexpr()
 setlocal foldmarker={{{,}}}
@@ -161,98 +143,13 @@ setlocal foldlevel=4
 setlocal foldminlines=1
 setlocal foldnestmax=20
 setlocal foldenable
-let s:l = 1 - ((0 * winheight(0) + 23) / 47)
+let s:l = 75 - ((33 * winheight(0) + 23) / 47)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 1
-normal! 0
-wincmd w
-argglobal
-if bufexists(fnamemodify("lua/kickstart/plugins/gitsigns.lua", ":p")) | buffer lua/kickstart/plugins/gitsigns.lua | else | edit lua/kickstart/plugins/gitsigns.lua | endif
-if &buftype ==# 'terminal'
-  silent file lua/kickstart/plugins/gitsigns.lua
-endif
-balt lua/kickstart/plugins/which-key.lua
-setlocal foldmethod=expr
-setlocal foldexpr=nvim_treesitter#foldexpr()
-setlocal foldmarker={{{,}}}
-setlocal foldignore=#
-setlocal foldlevel=6
-setlocal foldminlines=1
-setlocal foldnestmax=20
-setlocal foldenable
-let s:l = 59 - ((24 * winheight(0) + 23) / 47)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 59
-normal! 0
-wincmd w
-exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
-exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
-tabnext
-edit lua/custom/plugins/zk.lua
-let s:save_splitbelow = &splitbelow
-let s:save_splitright = &splitright
-set splitbelow splitright
-wincmd _ | wincmd |
-vsplit
-1wincmd h
-wincmd w
-let &splitbelow = s:save_splitbelow
-let &splitright = s:save_splitright
-wincmd t
-let s:save_winminheight = &winminheight
-let s:save_winminwidth = &winminwidth
-set winminheight=0
-set winheight=1
-set winminwidth=0
-set winwidth=1
-exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
-exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
-argglobal
-balt ~/.dotfiles/config/nvim/lua/custom/plugins/bullets.lua
-setlocal foldmethod=expr
-setlocal foldexpr=nvim_treesitter#foldexpr()
-setlocal foldmarker={{{,}}}
-setlocal foldignore=#
-setlocal foldlevel=5
-setlocal foldminlines=1
-setlocal foldnestmax=20
-setlocal foldenable
-let s:l = 1 - ((0 * winheight(0) + 23) / 47)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 1
-normal! 0
-wincmd w
-argglobal
-if bufexists(fnamemodify("~/.dotfiles/config/nvim/lua/custom/plugins/bullets.lua", ":p")) | buffer ~/.dotfiles/config/nvim/lua/custom/plugins/bullets.lua | else | edit ~/.dotfiles/config/nvim/lua/custom/plugins/bullets.lua | endif
-if &buftype ==# 'terminal'
-  silent file ~/.dotfiles/config/nvim/lua/custom/plugins/bullets.lua
-endif
-balt lua/custom/plugins/zk.lua
-setlocal foldmethod=expr
-setlocal foldexpr=nvim_treesitter#foldexpr()
-setlocal foldmarker={{{,}}}
-setlocal foldignore=#
-setlocal foldlevel=0
-setlocal foldminlines=1
-setlocal foldnestmax=20
-setlocal foldenable
-let s:l = 15 - ((14 * winheight(0) + 23) / 47)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 15
-normal! 080|
-wincmd w
-2wincmd w
-exe 'vert 1resize ' . ((&columns * 115 + 115) / 231)
-exe 'vert 2resize ' . ((&columns * 115 + 115) / 231)
-tabnext 3
+keepjumps 75
+normal! 011|
+tabnext 2
 set stal=1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
@@ -260,8 +157,6 @@ endif
 unlet! s:wipebuf
 set winheight=1 winwidth=20
 let &shortmess = s:shortmess_save
-let &winminheight = s:save_winminheight
-let &winminwidth = s:save_winminwidth
 let s:sx = expand("<sfile>:p:r")."x.vim"
 if filereadable(s:sx)
   exe "source " . fnameescape(s:sx)
